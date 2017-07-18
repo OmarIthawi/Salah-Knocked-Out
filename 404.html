@@ -30,10 +30,10 @@
   <p>To test the History API, click through the urls below. Note that none of these urls point to <em>real</em> pages. JavaScript will intercept these clicks, load data and the browser address bar will <em>appear</em> to change - but this is the History API in action!</p>
   <p>Use the back and forward buttons in your browser to navigate the history.</p>
   <ul id="examples">
-    <li><a href="/Salah-Knocked-Out/history/first">first</a></li>
-    <li><a href="/Salah-Knocked-Out/history/second">second</a></li>
-    <li><a href="/Salah-Knocked-Out/history/third">third</a></li>
-    <li><a href="/Salah-Knocked-Out/history/fourth">fourth</a></li>
+    <li><a class="first" href="/Salah-Knocked-Out/history/first">first</a></li>
+    <li><a class="second" href="/Salah-Knocked-Out/history/second">second</a></li>
+    <li><a class="third" href="/Salah-Knocked-Out/history/third">third</a></li>
+    <li><a class="fourth" href="/Salah-Knocked-Out/history/fourth">fourth</a></li>
   </ul>
   <p><small>Note: since these urls aren't real, refreshing the page will land on an invalid url.</small></p>
   <div id="output"></div>
@@ -120,6 +120,25 @@ addEvent(window, 'pageshow', function (event) {
 addEvent(window, 'pagehide', function (event) {
   reportEvent(event);
 });
+
+(function () {
+  var candidates = [
+    'first',
+    'second',
+    'third',
+    'fourth'
+  ];
+
+  var url = String(document.location.href);
+
+  candidates.forEach(function (elem) {
+    if (url.indexOf(elem) !== -1) {
+      var element = examples.getElementsByClassName(elem)[0];
+      data[elem].url = element.getAttribute('href');
+      reportData(data[elem]);
+    }
+  });
+}());
 
 </script><a id="html5badge" href="http://www.w3.org/html/logo/">
 <img src="https://www.w3.org/html/logo/badge/html5-badge-h-connectivity-device-graphics-multimedia-performance-semantics-storage.png" width="325" height="64" alt="HTML5 Powered with Connectivity / Realtime, Device Access, Graphics, 3D &amp; Effects, Multimedia, Performance &amp; Integration, Semantics, and Offline &amp; Storage" title="HTML5 Powered with Connectivity / Realtime, Device Access, Graphics, 3D &amp; Effects, Multimedia, Performance &amp; Integration, Semantics, and Offline &amp; Storage">
